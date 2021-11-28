@@ -1,50 +1,60 @@
-import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
+import { Routes, Route, Link, Outlet } from 'react-router-dom';
+import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import './App.css';
+import 'react-pro-sidebar/dist/css/styles.css';
 
-const Hello = () => {
+const Sidebar = () => {
   return (
-    <div>
-      <div className="Hello">
-        <img width="200px" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
+    <ProSidebar>
+      <Menu iconShape="square">
+        <MenuItem>
+          Stocks
+          <Link to="/stocks" />
+        </MenuItem>
+        <MenuItem>
+          Notifications
+          <Link to="/notifications" />
+        </MenuItem>
+        <MenuItem>
+          Analysis
+          <Link to="/analysis" />
+        </MenuItem>
+      </Menu>
+    </ProSidebar>
+  );
+};
+
+const Layout = () => {
+  return (
+    <div className="layout">
+      <Sidebar />
+      <Outlet />
     </div>
   );
 };
 
+const Stocks = () => {
+  return <div className="Main">Stocks</div>;
+};
+
+const Notifications = () => {
+  return <div className="Main">Notifications</div>;
+};
+
+const Analysis = () => {
+  return <div className="Main">Analysis</div>;
+};
+
 export default function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" component={Hello} />
-      </Switch>
-    </Router>
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="stocks" element={<Stocks />} />
+          <Route path="notifications" element={<Notifications />} />
+          <Route path="analysis" element={<Analysis />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }

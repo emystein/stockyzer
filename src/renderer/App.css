@@ -15,8 +15,11 @@ body {
   font-family: sans-serif;
   overflow-y: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
 }
 
 button {
@@ -54,9 +57,22 @@ a:hover {
   text-decoration: none;
 }
 
-.Hello {
+.Main {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.app {
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
+  position: relative;
+}
+
+.layout {
+  height: 100%;
+  display: flex;
+  position: relative;
 }
