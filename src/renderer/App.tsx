@@ -1,14 +1,19 @@
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
-import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import {BrowserRouter, Switch, Route, Link, Outlet} from 'react-router-dom';
+import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
+import Search from './Search';
 
 const Sidebar = () => {
   return (
     <ProSidebar>
       <Menu iconShape="square">
         <MenuItem>
-          Stocks
+          Search
+          <Link to="/search" />
+        </MenuItem>
+        <MenuItem>
+          My Stocks
           <Link to="/stocks" />
         </MenuItem>
         <MenuItem>
@@ -27,7 +32,6 @@ const Sidebar = () => {
 const Layout = () => {
   return (
     <div className="layout">
-      <Sidebar />
       <Outlet />
     </div>
   );
@@ -47,14 +51,22 @@ const Analysis = () => {
 
 export default function App() {
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="stocks" element={<Stocks />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="analysis" element={<Analysis />} />
+    <BrowserRouter>
+      <Sidebar />
+      <Switch>
+        <Route path="/search">
+          <Search />
         </Route>
-      </Routes>
-    </div>
+        <Route path="/stocks">
+          <Stocks />
+        </Route>
+        <Route path="/notifications">
+          <Notifications />
+        </Route>
+        <Route path="/analysis">
+          <Analysis />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
