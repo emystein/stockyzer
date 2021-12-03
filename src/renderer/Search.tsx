@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import Select from "react-select";
+import Select from 'react-select';
 
 const searchStockSymbol = (keywords: string) => {
   // TODO parameterize
@@ -18,17 +18,20 @@ const Search = () => {
     setSearchKeywords(event.target.value);
   };
 
-  const stockMatchToSelectOption = () => (match) => ({value: match['1. symbol'], label: match['2. name']});
+  const stockSelectOption = () => (match) => ({
+    value: match['1. symbol'],
+    label: match['2. name'],
+  });
+
+  const stockSelectOptionsFromApiResponse = (response) =>
+    response.data.bestMatches.map(stockSelectOption());
 
   const searchOnEvent = (event) => {
     event.preventDefault();
     document.body.style.cursor = 'wait';
     searchStockSymbol(searchKeywords)
       .then((response) => {
-        const selectOptions = response.data.bestMatches.map(
-          stockMatchToSelectOption()
-        );
-        setStockSelectOptions(selectOptions);
+        setStockSelectOptions(stockSelectOptionsFromApiResponse(response));
       })
       .catch(() => {
         setStockSelectOptions([]);
@@ -56,7 +59,7 @@ const Search = () => {
           </button>
         </div>
       </form>
-      <Select options={stockSelectOptions} value={selectedStockSymbol} />
+      <Select options={stockSelectOptions} value={selectedStockSymbol}/>
     </div>
   );
 };
