@@ -1,6 +1,6 @@
-import {useRef, useState, useEffect} from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import {AsyncPaginate} from 'react-select-async-paginate';
+import { AsyncPaginate } from 'react-select-async-paginate';
 
 const searchStockSymbol = async (keywords: string) => {
   // TODO parameterize
