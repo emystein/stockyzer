@@ -243,6 +243,7 @@
     "react-pro-sidebar": "^0.7.1",
     "react-router-dom": "^5.3.0",
     "react-select": "^5.2.1",
+    "react-select-async-paginate": "^0.6.0",
     "regenerator-runtime": "^0.13.9"
   },
   "devEngines": {
