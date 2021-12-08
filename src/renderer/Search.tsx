@@ -22,15 +22,12 @@ const Search = () => {
 
   const loadOptions = async (searchKeywords, loadedOptions) => {
     if (!searchKeywords.trim()) {
-      return { options: [], hasMore: false };
+      return { options: [] };
     }
 
     const response = await searchStockSymbol(searchKeywords);
 
-    return {
-      options: stockSelectOptionsFrom(response),
-      hasMore: false,
-    };
+    return { options: stockSelectOptionsFrom(response) };
   };
 
   return (
