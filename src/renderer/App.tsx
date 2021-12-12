@@ -3,6 +3,7 @@ import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import Search from './Search';
+import { searchStockSymbol, stockSelectOptionsFrom } from '../main/alphavantage';
 
 const Sidebar = () => {
   return (
@@ -55,7 +56,10 @@ export default function App() {
       <Sidebar/>
       <Switch>
         <Route path="/search">
-          <Search/>
+          <Search
+            search={searchStockSymbol}
+            selectOptionMap={stockSelectOptionsFrom}
+          />
         </Route>
         <Route path="/stocks">
           <Stocks/>

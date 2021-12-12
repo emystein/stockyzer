@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import {Props, useState} from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { searchStockSymbol, stockSelectOptionsFrom } from '../main/alphavantage';
 
-const Search = () => {
+const Search = ({ search, selectOptionMap }: Props) => {
   const [selectedStock, setSelectedStock] = useState(null);
 
   const loadOptions = async (searchKeywords, loadedOptions) => {
-    const response = await searchStockSymbol(searchKeywords);
+    const response = await search(searchKeywords);
 
-    return {options: stockSelectOptionsFrom(response)};
+    return {options: selectOptionMap(response)};
   };
 
   return (
