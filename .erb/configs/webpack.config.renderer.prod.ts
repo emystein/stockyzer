@@ -3,6 +3,7 @@
  */
 
 import path from 'path';
+import dotenv from 'dotenv';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -117,6 +118,7 @@ export default merge(baseConfig, {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
       DEBUG_PROD: false,
+      ...dotenv.config().parsed,
     }),
 
     new MiniCssExtractPlugin({

@@ -3,8 +3,7 @@ import axios from 'axios';
 import { AsyncPaginate } from 'react-select-async-paginate';
 
 const searchStockSymbol = async (keywords: string) => {
-  // TODO parameterize
-  const apiKey = '2SG3G2I68SLNY6ZL';
+  const apiKey = process.env.ALPHAVANTAGE_API_KEY;
   const apiUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${apiKey}`;
   return axios.get(apiUrl);
 };
