@@ -21,17 +21,18 @@ const Search = () => {
 
   const loadOptions = async (searchKeywords, loadedOptions) => {
     if (!searchKeywords.trim()) {
-      return { options: [] };
+      return {options: []};
     }
 
     const response = await searchStockSymbol(searchKeywords);
 
-    return { options: stockSelectOptionsFrom(response) };
+    return {options: stockSelectOptionsFrom(response)};
   };
 
   return (
     <div className="Main">
       <AsyncPaginate
+        autoFocus
         value={selectedStock}
         loadOptions={loadOptions}
         onChange={setSelectedStock}
