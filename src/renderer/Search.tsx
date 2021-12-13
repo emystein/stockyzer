@@ -2,7 +2,7 @@ import {Props, useState} from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 
 const Search = ({ search, selectOptionMap }: Props) => {
-  const [selectedStock, setSelectedStock] = useState(null);
+  const [selected, setSelected] = useState(null);
 
   const loadOptions = async (searchKeywords, loadedOptions) => {
     const response = await search(searchKeywords);
@@ -14,9 +14,9 @@ const Search = ({ search, selectOptionMap }: Props) => {
     <div className="Main">
       <AsyncPaginate
         autoFocus
-        value={selectedStock}
+        value={selected}
         loadOptions={loadOptions}
-        onChange={setSelectedStock}
+        onChange={setSelected}
         debounceTimeout={1000}
         classNamePrefix="search"
         className="search-container"
