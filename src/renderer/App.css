@@ -78,3 +78,7 @@ a:hover {
   display: flex;
   position: relative;
 }
+
+.search__menu {
+  color: black;
+}
