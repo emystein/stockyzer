@@ -3,6 +3,7 @@ import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import Search from './Search';
+import Stocks from './Stocks';
 import { searchStockSymbol, stockSelectOptionsFrom } from '../main/alphavantage';
 
 const Sidebar = () => {
@@ -36,10 +37,6 @@ const Layout = () => {
       <Outlet/>
     </div>
   );
-};
-
-const Stocks = () => {
-  return <div className="Main">Stocks</div>;
 };
 
 const Notifications = () => {
