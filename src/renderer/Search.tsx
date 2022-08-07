@@ -22,7 +22,7 @@ const Search = ({ search, selectOptionMap }: Props) => {
         value={selected}
         loadOptions={loadOptions}
         onChange={setSelected}
-        debounceTimeout={2000}
+        debounceTimeout={1000}
         classNamePrefix="search"
         className="search-container"
       />
