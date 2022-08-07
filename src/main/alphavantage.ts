@@ -8,7 +8,9 @@ const searchUrl = (keywords: string) => {
 
 export const searchStockSymbol = async (keywords: string) => {
   if (!keywords.trim()) {
-    return [];
+    return {
+      data: [],
+    };
   }
 
   return axios.get(searchUrl(keywords));

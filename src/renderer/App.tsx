@@ -3,8 +3,10 @@ import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import Search from './Search';
-import Stocks from './Stocks';
-import { searchStockSymbol, stockSelectOptionsFrom } from '../main/alphavantage';
+import {
+  searchStockSymbol,
+  stockSelectOptionsFrom,
+} from '../main/alphavantage';
 
 const Sidebar = () => {
   return (
@@ -12,19 +14,19 @@ const Sidebar = () => {
       <Menu iconShape="square">
         <MenuItem>
           Search
-          <Link to="/search"/>
+          <Link to="/search" />
         </MenuItem>
         <MenuItem>
           My Stocks
-          <Link to="/stocks"/>
+          <Link to="/stocks" />
         </MenuItem>
         <MenuItem>
           Notifications
-          <Link to="/notifications"/>
+          <Link to="/notifications" />
         </MenuItem>
         <MenuItem>
           Analysis
-          <Link to="/analysis"/>
+          <Link to="/analysis" />
         </MenuItem>
       </Menu>
     </ProSidebar>
@@ -34,9 +36,13 @@ const Sidebar = () => {
 const Layout = () => {
   return (
     <div className="layout">
-      <Outlet/>
+      <Outlet />
     </div>
   );
+};
+
+const Stocks = () => {
+  return <div className="Main">Stocks</div>;
 };
 
 const Notifications = () => {
@@ -50,7 +56,7 @@ const Analysis = () => {
 export default function App() {
   return (
     <BrowserRouter>
-      <Sidebar/>
+      <Sidebar />
       <Switch>
         <Route path="/search">
           <Search
@@ -59,15 +65,15 @@ export default function App() {
           />
         </Route>
         <Route path="/stocks">
-          <Stocks/>
+          <Stocks />
         </Route>
         <Route path="/notifications">
-          <Notifications/>
+          <Notifications />
         </Route>
         <Route path="/analysis">
-          <Analysis/>
+          <Analysis />
         </Route>
-        <Redirect to="/search"/>
+        <Redirect to="/search" />
       </Switch>
     </BrowserRouter>
   );
