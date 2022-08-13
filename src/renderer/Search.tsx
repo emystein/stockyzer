@@ -1,4 +1,4 @@
-import { Props, useState } from 'react';
+import { Props } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 
 const Search = ({ search, selectOptionMap, selected, setSelected }: Props) => {
