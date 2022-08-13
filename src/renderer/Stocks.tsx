@@ -4,9 +4,10 @@ import {searchStockSymbol, stockSelectOptionsFrom,} from '../main/alphavantage';
 import UnorderedList from './UnorderedList';
 
 const Stocks = () => {
+  const [selected, setSelected] = useState(null);
   const [list, setList] = useState([]);
 
-  const addSelectedToList = (selected) => {
+  const addSelectedToList = () => {
     if (selected) {
       setList(list.concat(selected));
     }
@@ -17,8 +18,11 @@ const Stocks = () => {
       <Search
         search={searchStockSymbol}
         selectOptionMap={stockSelectOptionsFrom}
-        addSelectedToList={addSelectedToList}
+        selected={selected}
+        setSelected={setSelected}
       />
+
+      <button onClick={addSelectedToList}>Add</button>
 
       <UnorderedList items={list} />
     </div>
