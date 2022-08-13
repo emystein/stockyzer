@@ -1,18 +1,13 @@
-import {Props, useState} from 'react';
+import { Props, useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 
-const Search = ({ search, selectOptionMap }: Props) => {
+const Search = ({ search, selectOptionMap, addSelectedToList }: Props) => {
   const [selected, setSelected] = useState(null);
-  const [list, setList] = useState([]);
 
   const loadOptions = async (searchKeywords, loadedOptions) => {
     const response = await search(searchKeywords);
 
-    return {options: selectOptionMap(response)};
-  };
-
-  const addSelectedToList = () => {
-    setList(list.concat(selected));
+    return { options: selectOptionMap(response) };
   };
 
   return (
@@ -27,13 +22,7 @@ const Search = ({ search, selectOptionMap }: Props) => {
         className="search-container"
       />
 
-      <button onClick={addSelectedToList}>Add</button>
-
-      <ul className="list-group">
-        {list.map((item) => (
-          <li key={item.value}>{item.label}</li>
-        ))}
-      </ul>
+      <button onClick={addSelectedToList(selected)}>Add</button>
     </div>
   );
 };

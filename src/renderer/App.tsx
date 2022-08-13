@@ -1,21 +1,20 @@
-import {BrowserRouter, Switch, Route, Link, Outlet, Redirect} from 'react-router-dom';
-import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
+import {
+  BrowserRouter,
+  Link,
+  Outlet,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { Menu, MenuItem, ProSidebar } from 'react-pro-sidebar';
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
-import Search from './Search';
-import {
-  searchStockSymbol,
-  stockSelectOptionsFrom,
-} from '../main/alphavantage';
+import Stocks from './Stocks';
 
 const Sidebar = () => {
   return (
     <ProSidebar>
       <Menu iconShape="square">
-        <MenuItem>
-          Search
-          <Link to="/search" />
-        </MenuItem>
         <MenuItem>
           My Stocks
           <Link to="/stocks" />
@@ -41,10 +40,6 @@ const Layout = () => {
   );
 };
 
-const Stocks = () => {
-  return <div className="Main">Stocks</div>;
-};
-
 const Notifications = () => {
   return <div className="Main">Notifications</div>;
 };
@@ -58,12 +53,6 @@ export default function App() {
     <BrowserRouter>
       <Sidebar />
       <Switch>
-        <Route path="/search">
-          <Search
-            search={searchStockSymbol}
-            selectOptionMap={stockSelectOptionsFrom}
-          />
-        </Route>
         <Route path="/stocks">
           <Stocks />
         </Route>
@@ -73,7 +62,7 @@ export default function App() {
         <Route path="/analysis">
           <Analysis />
         </Route>
-        <Redirect to="/search" />
+        <Redirect to="/stocks" />
       </Switch>
     </BrowserRouter>
   );
