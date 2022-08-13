@@ -22,7 +22,13 @@ const Search = ({ search, selectOptionMap, addSelectedToList }: Props) => {
         className="search-container"
       />
 
-      <button onClick={addSelectedToList(selected)}>Add</button>
+      <button
+        onClick={() => {
+          addSelectedToList(selected);
+        }}
+      >
+        Add
+      </button>
     </div>
   );
 };

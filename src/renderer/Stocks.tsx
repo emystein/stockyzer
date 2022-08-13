@@ -1,9 +1,6 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import Search from './Search';
-import {
-  searchStockSymbol,
-  stockSelectOptionsFrom,
-} from '../main/alphavantage';
+import {searchStockSymbol, stockSelectOptionsFrom,} from '../main/alphavantage';
 import UnorderedList from './UnorderedList';
 
 const Stocks = () => {
