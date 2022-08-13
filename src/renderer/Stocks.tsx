@@ -4,6 +4,7 @@ import {
   searchStockSymbol,
   stockSelectOptionsFrom,
 } from '../main/alphavantage';
+import UnorderedList from './UnorderedList';
 
 const Stocks = () => {
   const [list, setList] = useState([]);
@@ -22,11 +23,7 @@ const Stocks = () => {
         addSelectedToList={addSelectedToList}
       />
 
-      <ul className="list-group">
-        {list.map((item) => (
-          <li key={item.value}>{item.label}</li>
-        ))}
-      </ul>
+      <UnorderedList items={list} />
     </div>
   );
 };
