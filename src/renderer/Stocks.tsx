@@ -1,13 +1,18 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Search from './Search';
-import {searchStockSymbol, stockSelectOptionsFrom,} from '../main/alphavantage';
+import {
+  searchStockSymbol,
+  stockSelectOptionsFrom,
+} from '../main/alphavantage';
 import StockList from './StockList';
 
 const Stocks = () => {
   const [selectedSymbol, setSelectedSymbol] = useState(null);
   const [symbols, setSymbols] = useState([]);
 
-  const addSelectedSymbolToList = () => {
+  const addSelectedSymbolToList = (selectedSymbol) => {
+    setSelectedSymbol(selectedSymbol);
+
     if (selectedSymbol) {
       setSymbols(symbols.concat(selectedSymbol));
     }
@@ -27,10 +32,8 @@ const Stocks = () => {
         search={searchStockSymbol}
         selectOptionMap={stockSelectOptionsFrom}
         selected={selectedSymbol}
-        setSelected={setSelectedSymbol}
+        setSelected={addSelectedSymbolToList}
       />
-
-      <button onClick={addSelectedSymbolToList}>Add</button>
 
       <StockList symbols={symbols} handleRemoveSymbol={removeSymbol} />
     </div>

@@ -1,5 +1,5 @@
 import { Props } from 'react';
-import StockListItem from "./StockListItem";
+import StockListItem from './StockListItem';
 
 const StockList = ({ symbols, handleRemoveSymbol }: Props) => {
   return (
