@@ -10,7 +10,7 @@ interface Props {
 const StockTableRow = ({ symbol, handleRemove }: Props) => {
   return (
     <tr>
-      <td className="stock-symbol-label">{symbol.label}</td>
+      <td>{symbol.label}</td>
 
       <td>
         <button type="button" onClick={() => handleRemove(symbol)}>
