@@ -7,7 +7,7 @@ interface Props {
   handleRemove: any;
 }
 
-const StockListItem = ({ symbol, handleRemove }: Props) => {
+const StockTableRow = ({ symbol, handleRemove }: Props) => {
   return (
     <tr>
       <td className="stock-symbol-label">{symbol.label}</td>
@@ -21,4 +21,4 @@ const StockListItem = ({ symbol, handleRemove }: Props) => {
   );
 };
 
-export default StockListItem;
+export default StockTableRow;

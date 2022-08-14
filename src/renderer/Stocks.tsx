@@ -4,7 +4,7 @@ import {
   searchStockSymbol,
   stockSelectOptionsFrom,
 } from '../main/alphavantage';
-import StockList from './StockList';
+import StockTable from './StockTable';
 import StockSymbol from '../main/stockSymbol';
 
 const Stocks = () => {
@@ -36,7 +36,7 @@ const Stocks = () => {
         setSelected={addSelectedSymbolToList}
       />
 
-      <StockList symbols={symbols} handleRemoveSymbol={removeSymbol} />
+      <StockTable symbols={symbols} handleRemoveSymbol={removeSymbol} />
     </div>
   );
 };
