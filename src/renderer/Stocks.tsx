@@ -21,7 +21,7 @@ const Stocks = () => {
 
   const removeSymbol = (symbolToRemove: StockSymbol) => {
     const updatedSymbols = symbols.filter(
-      (symbol: StockSymbol) => symbol.value !== symbolToRemove.value
+      (symbol: StockSymbol) => symbol !== symbolToRemove
     );
 
     setSymbols(updatedSymbols);
