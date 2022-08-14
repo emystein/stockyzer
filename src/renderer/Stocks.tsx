@@ -5,22 +5,23 @@ import {
   stockSelectOptionsFrom,
 } from '../main/alphavantage';
 import StockList from './StockList';
+import StockSymbol from '../main/stockSymbol';
 
 const Stocks = () => {
   const [selectedSymbol, setSelectedSymbol] = useState(null);
   const [symbols, setSymbols] = useState([]);
 
-  const addSelectedSymbolToList = (selectedSymbol) => {
-    setSelectedSymbol(selectedSymbol);
+  const addSelectedSymbolToList = (symbolToAdd: StockSymbol) => {
+    setSelectedSymbol(symbolToAdd);
 
-    if (selectedSymbol) {
-      setSymbols(symbols.concat(selectedSymbol));
+    if (symbolToAdd) {
+      setSymbols(symbols.concat(symbolToAdd));
     }
   };
 
-  const removeSymbol = (symbolValue) => {
+  const removeSymbol = (symbolToRemove: StockSymbol) => {
     const updatedSymbols = symbols.filter(
-      (symbol) => symbol.value !== symbolValue
+      (symbol: StockSymbol) => symbol.value !== symbolToRemove.value
     );
 
     setSymbols(updatedSymbols);
