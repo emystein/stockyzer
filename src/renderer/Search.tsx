@@ -15,8 +15,7 @@ const Search = ({ search, selectOptionMap, selected, setSelected }: Props) => {
       loadOptions={loadOptions}
       onChange={setSelected}
       debounceTimeout={1000}
-      classNamePrefix="search"
-      className="search-container"
+      classNamePrefix="stock-search"
     />
   );
 };
