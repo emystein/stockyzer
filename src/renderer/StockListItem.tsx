@@ -1,4 +1,5 @@
 import { Props } from 'react';
+import { BsFillTrashFill } from 'react-icons/bs';
 import StockSymbol from '../main/stockSymbol';
 
 interface Props {
@@ -8,15 +9,15 @@ interface Props {
 
 const StockListItem = ({ symbol, handleRemove }: Props) => {
   return (
-    <li key={symbol.value}>
-      <span>{symbol.label}</span>
+    <tr>
+      <td className="stock-symbol-label">{symbol.label}</td>
 
-      <span>
+      <td>
         <button type="button" onClick={() => handleRemove(symbol)}>
-          Remove
+          <BsFillTrashFill />
         </button>
-      </span>
-    </li>
+      </td>
+    </tr>
   );
 };
 

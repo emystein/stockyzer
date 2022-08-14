@@ -9,11 +9,17 @@ interface Props {
 
 const StockList = ({ symbols, handleRemoveSymbol }: Props) => {
   return (
-    <ul className="list-group">
-      {symbols.map((symbol: StockSymbol) => (
-        <StockListItem symbol={symbol} handleRemove={handleRemoveSymbol} />
-      ))}
-    </ul>
+    <table>
+      <tbody>
+        {symbols.map((symbol: StockSymbol) => (
+          <StockListItem
+            key={symbol.value}
+            symbol={symbol}
+            handleRemove={handleRemoveSymbol}
+          />
+        ))}
+      </tbody>
+    </table>
   );
 };
 
