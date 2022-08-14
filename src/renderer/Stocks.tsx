@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Search from './Search';
 import {searchStockSymbol, stockSelectOptionsFrom,} from '../main/alphavantage';
-import UnorderedList from './UnorderedList';
+import StockList from './StockList';
 
 const Stocks = () => {
   const [selectedSymbol, setSelectedSymbol] = useState(null);
@@ -11,6 +11,14 @@ const Stocks = () => {
     if (selectedSymbol) {
       setSymbols(symbols.concat(selectedSymbol));
     }
+  };
+
+  const removeSymbol = (symbolValue) => {
+    const updatedSymbols = symbols.filter(
+      (symbol) => symbol.value !== symbolValue
+    );
+
+    setSymbols(updatedSymbols);
   };
 
   return (
@@ -24,7 +32,7 @@ const Stocks = () => {
 
       <button onClick={addSelectedSymbolToList}>Add</button>
 
-      <UnorderedList items={symbols} />
+      <StockList symbols={symbols} handleRemoveSymbol={removeSymbol} />
     </div>
   );
 };
