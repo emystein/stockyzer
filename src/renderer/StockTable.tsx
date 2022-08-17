@@ -1,6 +1,7 @@
 import { Props } from 'react';
 import StockSymbol from '../main/stockSymbol';
 import StockTableRow from './StockTableRow';
+import { timeSeriesDaily } from '../main/alphavantage';
 
 interface Props {
   symbols: StockSymbol[];
@@ -16,6 +17,7 @@ const StockTable = ({ symbols, handleRemoveSymbol }: Props) => {
             key={symbol.value}
             symbol={symbol}
             handleRemove={handleRemoveSymbol}
+            timeSeriesFunction={timeSeriesDaily}
           />
         ))}
       </tbody>
