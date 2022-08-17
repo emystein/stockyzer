@@ -4,13 +4,17 @@ import Plot from 'react-plotly.js';
 import StockSymbol from '../main/stockSymbol';
 import TimeSeries from '../main/timeSeries';
 
-interface Props {
+interface StockTableRowProps {
   symbol: StockSymbol;
   handleRemove: any;
   timeSeriesFunction: (symbol: StockSymbol) => Promise<TimeSeries>;
 }
 
-const StockTableRow = ({ symbol, handleRemove, timeSeriesFunction }: Props) => {
+const StockTableRow = ({
+  symbol,
+  handleRemove,
+  timeSeriesFunction,
+}: StockTableRowProps) => {
   const [timeSeries, setTimeSeries] = useState(new TimeSeries([], []));
 
   useEffect(() => {
