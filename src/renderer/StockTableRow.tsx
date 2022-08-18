@@ -1,4 +1,4 @@
-import { Props, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import Plot from 'react-plotly.js';
 import StockSymbol from '../main/stockSymbol';
@@ -18,10 +18,10 @@ const StockTableRow = ({
   const [timeSeries, setTimeSeries] = useState(new TimeSeries([], []));
 
   useEffect(() => {
-    // eslint-disable-next-line promise/catch-or-return
-    timeSeriesFunction(symbol).then((result: TimeSeries) =>
-      setTimeSeries(result)
-    );
+    const resolveTimeSeriesPromise = async () => {
+      setTimeSeries(await timeSeriesFunction(symbol));
+    };
+    resolveTimeSeriesPromise();
   }, [symbol, timeSeriesFunction]);
 
   return (
@@ -32,14 +32,14 @@ const StockTableRow = ({
         <Plot
           data={[
             {
-              x: timeSeries.xValues,
-              y: timeSeries.yValues,
+              x: timeSeries.dates,
+              y: timeSeries.values,
               type: 'scatter',
               mode: 'lines',
               marker: { color: 'green' },
             },
           ]}
-          layout={{ width: 600, height: 440, title: 'Time Series' }}
+          layout={{ width: 650, height: 350, title: 'Time Series' }}
         />
       </td>
 

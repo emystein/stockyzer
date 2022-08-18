@@ -1,10 +1,10 @@
 export default class TimeSeries {
-  xValues: any[];
+  dates: string[];
 
-  yValues: any[];
+  values: string[];
 
-  constructor(xValues: any[], yValues: any[]) {
-    this.xValues = xValues;
-    this.yValues = yValues;
+  constructor(dates: string[], values: string[]) {
+    this.dates = dates;
+    this.values = values;
   }
 }
