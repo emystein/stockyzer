@@ -29,7 +29,12 @@ const StockTableRow = ({
       <td>{symbol.label}</td>
 
       <td>
-        <TimeSeriesChart timeSeries={timeSeries} />
+        <TimeSeriesChart
+          timeSeries={timeSeries}
+          width={600}
+          height={300}
+          title="Time Series"
+        />
       </td>
 
       <td>

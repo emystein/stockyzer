@@ -3,9 +3,17 @@ import TimeSeries from '../main/timeSeries';
 
 interface TimeSeriesChartProps {
   timeSeries: TimeSeries;
+  width: number;
+  height: number;
+  title: string;
 }
 
-const TimeSeriesChart = ({ timeSeries }: TimeSeriesChartProps) => {
+const TimeSeriesChart = ({
+  timeSeries,
+  width,
+  height,
+  title,
+}: TimeSeriesChartProps) => {
   return (
     <Plot
       data={[
@@ -17,7 +25,7 @@ const TimeSeriesChart = ({ timeSeries }: TimeSeriesChartProps) => {
           marker: { color: 'green' },
         },
       ]}
-      layout={{ width: 600, height: 300, title: 'Time Series' }}
+      layout={{ width, height, title }}
     />
   );
 };
