@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
-import Plot from 'react-plotly.js';
 import StockSymbol from '../main/stockSymbol';
 import TimeSeries from '../main/timeSeries';
+import TimeSeriesChart from './TimeSeriesChart';
 
 interface StockTableRowProps {
   symbol: StockSymbol;
@@ -29,18 +29,7 @@ const StockTableRow = ({
       <td>{symbol.label}</td>
 
       <td>
-        <Plot
-          data={[
-            {
-              x: timeSeries.dates,
-              y: timeSeries.values,
-              type: 'scatter',
-              mode: 'lines',
-              marker: { color: 'green' },
-            },
-          ]}
-          layout={{ width: 650, height: 350, title: 'Time Series' }}
-        />
+        <TimeSeriesChart timeSeries={timeSeries} />
       </td>
 
       <td>

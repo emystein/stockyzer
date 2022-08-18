@@ -16,19 +16,19 @@ export const searchStockSymbol = async (keywords: string) => {
     .then((response) => response.bestMatches);
 };
 
-const matchToSelectOption = () => (match) => ({
-  value: match['1. symbol'],
-  label: match['2. name'],
-});
+export const stockSelectOptionsFrom = (matches: any[]) =>
+  matches.map((match) => new StockSymbol(match['1. symbol'], match['2. name']));
 
-export const stockSelectOptionsFrom = (symbols) =>
-  symbols.map(matchToSelectOption());
+const timeSeriesFrom = (alphavantageTimeSeries: any[], priceAt: string) => {
+  const dates = Object.keys(alphavantageTimeSeries);
+  const values = Object.values(alphavantageTimeSeries).map(
+    (value) => value[priceAt]
+  );
+  return new TimeSeries(dates, values);
+};
 
 export const timeSeriesDaily = (symbol: StockSymbol) => {
   return alphavantage.data.daily(symbol.value).then((response) => {
-    const timeSeries = response['Time Series (Daily)'];
-    const dates = Object.keys(timeSeries);
-    const values = Object.values(timeSeries).map((value) => value['4. close']);
-    return new TimeSeries(dates, values);
+    return timeSeriesFrom(response['Time Series (Daily)'], '4. close');
   });
 };
