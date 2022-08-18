@@ -1,4 +1,3 @@
-import axios from 'axios';
 import alphavantage_factory from 'alphavantage';
 import StockSymbol from './stockSymbol';
 import TimeSeries from './timeSeries';
