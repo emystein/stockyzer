@@ -1,19 +1,13 @@
 import Plot from 'react-plotly.js';
 import TimeSeries from '../main/timeSeries';
+import ChartLayout from './chartLayout';
 
 interface TimeSeriesChartProps {
   timeSeries: TimeSeries;
-  width: number;
-  height: number;
-  title: string;
+  layout: ChartLayout;
 }
 
-const TimeSeriesChart = ({
-  timeSeries,
-  width,
-  height,
-  title,
-}: TimeSeriesChartProps) => {
+const TimeSeriesChart = ({ timeSeries, layout }: TimeSeriesChartProps) => {
   return (
     <Plot
       data={[
@@ -25,7 +19,7 @@ const TimeSeriesChart = ({
           marker: { color: 'green' },
         },
       ]}
-      layout={{ width, height, title }}
+      layout={layout}
     />
   );
 };

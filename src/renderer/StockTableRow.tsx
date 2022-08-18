@@ -3,6 +3,7 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import StockSymbol from '../main/stockSymbol';
 import TimeSeries from '../main/timeSeries';
 import TimeSeriesChart from './TimeSeriesChart';
+import ChartLayout from './chartLayout';
 
 interface StockTableRowProps {
   symbol: StockSymbol;
@@ -31,9 +32,7 @@ const StockTableRow = ({
       <td>
         <TimeSeriesChart
           timeSeries={timeSeries}
-          width={600}
-          height={300}
-          title="Time Series"
+          layout={new ChartLayout(600, 300, 'Time Series')}
         />
       </td>
 
