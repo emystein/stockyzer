@@ -14,7 +14,7 @@ const Stocks = () => {
   const addSelectedSymbolToList = (symbolToAdd: StockSymbol) => {
     setSelectedSymbol(symbolToAdd);
 
-    if (symbolToAdd) {
+    if (symbolToAdd && !symbols.includes(symbolToAdd)) {
       setSymbols(symbols.concat(symbolToAdd));
     }
   };
