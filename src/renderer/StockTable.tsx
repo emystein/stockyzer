@@ -15,6 +15,7 @@ const StockTable = ({ symbols, handleRemoveSymbol }: StockTableProps) => {
           <tr>
             <th scope="col">Symbol</th>
             <th scope="col">Daily Price</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
