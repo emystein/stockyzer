@@ -9,18 +9,26 @@ interface StockTableProps {
 
 const StockTable = ({ symbols, handleRemoveSymbol }: StockTableProps) => {
   return (
-    <table>
-      <tbody>
-        {symbols.map((symbol: StockSymbol) => (
-          <StockTableRow
-            key={symbol.value}
-            symbol={symbol}
-            handleRemove={handleRemoveSymbol}
-            timeSeriesFunction={timeSeriesDaily}
-          />
-        ))}
-      </tbody>
-    </table>
+    symbols.length > 0 && (
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Daily Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {symbols.map((symbol: StockSymbol) => (
+            <StockTableRow
+              key={symbol.value}
+              symbol={symbol}
+              handleRemove={handleRemoveSymbol}
+              timeSeriesFunction={timeSeriesDaily}
+            />
+          ))}
+        </tbody>
+      </table>
+    )
   );
 };
 

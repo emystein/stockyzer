@@ -32,7 +32,7 @@ const StockTableRow = ({
       <td>
         <TimeSeriesChart
           timeSeries={timeSeries}
-          layout={new ChartLayout(600, 300, 'Time Series')}
+          layout={new ChartLayout(600, 300, '')}
         />
       </td>
 
