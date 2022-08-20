@@ -15,41 +15,15 @@ import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import dotenv from 'dotenv';
-import ElectronStore from 'electron-store';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-
-dotenv.config();
-
-const schema = {
-  symbols: {
-    type: 'array',
-    items: {
-      type: 'object',
-      properties: {
-        value: {
-          type: 'string',
-        },
-        label: {
-          type: 'string',
-        },
-      },
-    },
-  },
-};
-const store = new ElectronStore({ schema });
+import store from './store';
 
 if (store.get('symbols') === undefined) {
   store.set('symbols', []);
 }
 
-ipcMain.handle('getSymbols', (event, key) => {
-  return store.get('symbols');
-});
-
-ipcMain.handle('persistSymbols', (event, symbols) => {
-  store.set('symbols', symbols);
-});
+dotenv.config();
 
 export default class AppUpdater {
   constructor() {
