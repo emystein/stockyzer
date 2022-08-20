@@ -15,10 +15,21 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import dotenv from 'dotenv';
+import ElectronStore from 'electron-store';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
 dotenv.config();
+
+const store = new ElectronStore();
+
+ipcMain.handle('getSymbols', (event, key) => {
+  return store.get('symbols');
+});
+
+ipcMain.handle('persistSymbols', (event, stocks) => {
+  return store.set('symbols', stocks);
+});
 
 export default class AppUpdater {
   constructor() {
@@ -81,6 +92,9 @@ const createWindow = async () => {
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      // https://stackoverflow.com/questions/37994441/how-to-use-fs-module-inside-electron-atom-webpack-application/55776662#55776662
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true,
     },
   });
 

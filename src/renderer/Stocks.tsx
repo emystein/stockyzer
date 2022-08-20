@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ipcMain } from 'electron';
 import Search from './Search';
 import {
   searchStockSymbol,
@@ -11,11 +12,23 @@ const Stocks = () => {
   const [selectedSymbol, setSelectedSymbol] = useState(null);
   const [symbols, setSymbols] = useState([]);
 
+  useEffect(() => {
+    const resolvePromise = async () => {
+      setSymbols(await ipcMain.invoke('getSymbols'));
+    };
+    resolvePromise();
+  }, [symbols]);
+
+  const persistSymbols = (symbolsToPersist: StockSymbol[]) => {
+    ipcMain.invoke('persistSymbols', symbolsToPersist);
+    setSymbols(symbolsToPersist);
+  };
+
   const addSelectedSymbolToList = (symbolToAdd: StockSymbol) => {
     setSelectedSymbol(symbolToAdd);
 
     if (symbolToAdd && !symbols.includes(symbolToAdd)) {
-      setSymbols(symbols.concat(symbolToAdd));
+      persistSymbols(symbols.concat(symbolToAdd));
     }
   };
 
@@ -24,7 +37,7 @@ const Stocks = () => {
       (symbol: StockSymbol) => symbol !== symbolToRemove
     );
 
-    setSymbols(updatedSymbols);
+    persistSymbols(updatedSymbols);
   };
 
   return (

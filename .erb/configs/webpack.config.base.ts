@@ -3,6 +3,7 @@
  */
 
 import webpack from 'webpack';
+import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 import webpackPaths from './webpack.paths';
 import { dependencies as externals } from '../../release/app/package.json';
 
@@ -47,5 +48,6 @@ export default {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
     }),
+    new NodePolyfillPlugin(),
   ],
 };
