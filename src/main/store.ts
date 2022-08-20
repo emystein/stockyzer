@@ -18,14 +18,18 @@ const schema = {
   },
 };
 
-const store = new ElectronStore({ schema });
+const initializeStore = () => {
+  const store = new ElectronStore({ schema });
 
-ipcMain.handle('getSymbols', (event, key) => {
-  return store.get('symbols');
-});
+  ipcMain.handle('getSymbols', (event, key) => {
+    return store.get('symbols', []);
+  });
 
-ipcMain.handle('persistSymbols', (event, symbols) => {
-  store.set('symbols', symbols);
-});
+  ipcMain.handle('persistSymbols', (event, symbols) => {
+    store.set('symbols', symbols);
+  });
 
-export default store;
+  return store;
+};
+
+export default initializeStore;

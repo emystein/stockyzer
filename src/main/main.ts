@@ -17,11 +17,9 @@ import log from 'electron-log';
 import dotenv from 'dotenv';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import store from './store';
+import initializeStore from './store';
 
-if (store.get('symbols') === undefined) {
-  store.set('symbols', []);
-}
+initializeStore();
 
 dotenv.config();
 
