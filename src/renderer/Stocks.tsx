@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { ipcMain } from 'electron';
 import Search from './Search';
 import {
   searchStockSymbol,
@@ -14,13 +13,13 @@ const Stocks = () => {
 
   useEffect(() => {
     const resolvePromise = async () => {
-      setSymbols(await ipcMain.invoke('getSymbols'));
+      setSymbols(await window.electron.ipcRenderer.getSymbols());
     };
     resolvePromise();
-  }, [symbols]);
+  }, []);
 
   const persistSymbols = (symbolsToPersist: StockSymbol[]) => {
-    ipcMain.invoke('persistSymbols', symbolsToPersist);
+    window.electron.ipcRenderer.persistSymbols(symbolsToPersist);
     setSymbols(symbolsToPersist);
   };
 

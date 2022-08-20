@@ -5,6 +5,13 @@ contextBridge.exposeInMainWorld('electron', {
     myPing() {
       ipcRenderer.send('ipc-example', 'ping');
     },
+    async getSymbols() {
+      return ipcRenderer.invoke('getSymbols');
+    },
+    persistSymbols(symbols) {
+      console.log('Persisting symbols:', symbols);
+      ipcRenderer.invoke('persistSymbols', symbols);
+    },
     on(channel, func) {
       const validChannels = ['ipc-example'];
       if (validChannels.includes(channel)) {
