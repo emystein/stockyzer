@@ -7,6 +7,18 @@ interface StockTableProps {
   handleRemoveSymbol: any;
 }
 
+const alphabetically = (a: StockSymbol, b: StockSymbol) => {
+  if (a.label < b.label) {
+    return -1;
+  }
+
+  if (a.label > b.label) {
+    return 1;
+  }
+
+  return 0;
+};
+
 const StockTable = ({ symbols, handleRemoveSymbol }: StockTableProps) => {
   return (
     symbols.length > 0 && (
@@ -19,7 +31,7 @@ const StockTable = ({ symbols, handleRemoveSymbol }: StockTableProps) => {
           </tr>
         </thead>
         <tbody>
-          {symbols.map((symbol: StockSymbol) => (
+          {symbols.sort(alphabetically).map((symbol: StockSymbol) => (
             <StockTableRow
               key={symbol.value}
               symbol={symbol}
