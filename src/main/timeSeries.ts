@@ -7,4 +7,8 @@ export default class TimeSeries {
     this.dates = dates;
     this.values = values;
   }
+
+  hasData = () => {
+    return this.values.length > 0;
+  };
 }
