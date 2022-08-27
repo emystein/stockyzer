@@ -24,7 +24,7 @@ const StockTable = ({ symbols, handleRemoveSymbol }: StockTableProps) => {
               key={symbol.value}
               symbol={symbol}
               handleRemove={handleRemoveSymbol}
-              timeSeriesFunction={timeSeriesDaily}
+              computeTimeSeries={timeSeriesDaily}
             />
           ))}
         </tbody>

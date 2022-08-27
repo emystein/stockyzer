@@ -8,22 +8,22 @@ import ChartLayout from './chartLayout';
 interface StockTableRowProps {
   symbol: StockSymbol;
   handleRemove: any;
-  timeSeriesFunction: (symbol: StockSymbol) => Promise<TimeSeries>;
+  computeTimeSeries: (symbol: StockSymbol) => Promise<TimeSeries>;
 }
 
 const StockTableRow = ({
   symbol,
   handleRemove,
-  timeSeriesFunction,
+  computeTimeSeries,
 }: StockTableRowProps) => {
   const [timeSeries, setTimeSeries] = useState(new TimeSeries([], []));
 
   useEffect(() => {
-    const resolveTimeSeriesPromise = async () => {
-      setTimeSeries(await timeSeriesFunction(symbol));
-    };
-    resolveTimeSeriesPromise();
-  }, [symbol, timeSeriesFunction]);
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    computeTimeSeries(symbol).then((timeSeries: TimeSeries) =>
+      setTimeSeries(timeSeries)
+    );
+  }, [symbol, computeTimeSeries]);
 
   return (
     <tr>
