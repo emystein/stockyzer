@@ -17,10 +17,7 @@ const Stocks = ({ stockStore }: StocksProps) => {
   const [symbols, setSymbols] = useState([]);
 
   useEffect(() => {
-    const resolvePromise = async () => {
-      setSymbols(await stockStore.getSymbols());
-    };
-    resolvePromise();
+    stockStore.getSymbols().then((symbols) => setSymbols(symbols));
   }, [stockStore]);
 
   const persistSymbols = (symbolsToPersist: StockSymbol[]) => {
