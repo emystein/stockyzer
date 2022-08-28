@@ -48,13 +48,17 @@ const Analysis = () => {
   return <div className="Main">Analysis</div>;
 };
 
-export default function App() {
+interface AppProps {
+  stockStore: StockStore;
+}
+
+export default function App({ stockStore }: AppProps) {
   return (
     <BrowserRouter>
       <Sidebar />
       <Switch>
         <Route path="/stocks">
-          <Stocks />
+          <Stocks stockStore={stockStore} />
         </Route>
         <Route path="/notifications">
           <Notifications />

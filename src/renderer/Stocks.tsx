@@ -6,20 +6,25 @@ import {
 } from '../main/alphavantage';
 import StockTable from './StockTable';
 import StockSymbol from '../main/stockSymbol';
+import StockStore from '../main/stockStore';
 
-const Stocks = () => {
+interface StocksProps {
+  stockStore: StockStore;
+}
+
+const Stocks = ({ stockStore }: StocksProps) => {
   const [selectedSymbol, setSelectedSymbol] = useState(null);
   const [symbols, setSymbols] = useState([]);
 
   useEffect(() => {
     const resolvePromise = async () => {
-      setSymbols(await window.electron.ipcRenderer.getSymbols());
+      setSymbols(await stockStore.getSymbols());
     };
     resolvePromise();
-  }, []);
+  }, [stockStore]);
 
   const persistSymbols = (symbolsToPersist: StockSymbol[]) => {
-    window.electron.ipcRenderer.persistSymbols(symbolsToPersist);
+    stockStore.persistSymbols(symbolsToPersist);
     setSymbols(symbolsToPersist);
   };
 
