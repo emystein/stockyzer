@@ -32,9 +32,15 @@ const StockTimeSeriesChart = (
   }
 
   return (
-    <button type="button" onClick={resolveTimeSeries}>
-      <BsArrowRepeat />
-    </button>
+    <div className="time-series-retry-container">
+      <button
+        className="time-series-retry-button"
+        type="button"
+        onClick={resolveTimeSeries}
+      >
+        <BsArrowRepeat />
+      </button>
+    </div>
   );
 };
 

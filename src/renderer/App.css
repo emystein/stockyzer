@@ -79,3 +79,13 @@ a:hover {
 .stock-search__control {
   width: 300px;
 }
+
+.time-series-retry-container {
+  height: 300px;
+  display: flex;
+  align-items: center;
+}
+
+.time-series-retry-button {
+  margin: auto; /* to center the button horizontally */
+}
