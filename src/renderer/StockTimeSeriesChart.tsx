@@ -3,7 +3,7 @@ import StockSymbol from '../main/stockSymbol';
 import TimeSeries from '../main/timeSeries';
 import TimeSeriesChart from './TimeSeriesChart';
 import ChartLayout from './chartLayout';
-import StockTimeSeriesRetry from './StockTimeSeriesRetry';
+import ComputationRetry from './ComputationRetry';
 
 const StockTimeSeriesChart = (
   symbol: StockSymbol,
@@ -23,7 +23,7 @@ const StockTimeSeriesChart = (
   }, [symbol, computeTimeSeries]);
 
   if (timeSeries.isEmpty()) {
-    return <StockTimeSeriesRetry resolveTimeSeries={resolveTimeSeries} />;
+    return <ComputationRetry compute={resolveTimeSeries} />;
   }
 
   return (

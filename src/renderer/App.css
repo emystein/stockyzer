@@ -80,12 +80,12 @@ a:hover {
   width: 300px;
 }
 
-.time-series-retry-container {
+.retry-container {
   height: 300px;
   display: flex;
   align-items: center;
 }
 
-.time-series-retry-button {
+.retry-element {
   margin: auto; /* to center the button horizontally */
 }
