@@ -27,9 +27,11 @@ const ComputationRetry = ({ compute }: RetryProps) => {
 
   return (
     <div className="retry-container">
-      <button className="retry-element" type="button" onClick={retry}>
-        <BsArrowRepeat />
-      </button>
+      <div className="retry-element">
+        <button type="button" onClick={retry}>
+          <BsArrowRepeat />
+        </button>
+      </div>
     </div>
   );
 };
