@@ -6,16 +6,16 @@ interface RetryProps {
 }
 
 const ComputationRetry = ({ compute }: RetryProps) => {
-  const [waiting, setWaiting] = useState(false);
+  const [isComputing, setIsComputing] = useState(false);
 
-  const startWaiting = () => setWaiting(true);
+  const disallowRetry = () => setIsComputing(true);
 
   const retry = () => {
-    startWaiting();
+    disallowRetry();
     compute();
   };
 
-  if (waiting) {
+  if (isComputing) {
     return (
       <div className="retry-container">
         <div className="retry-element">
