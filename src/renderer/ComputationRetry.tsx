@@ -15,23 +15,19 @@ const ComputationRetry = ({ compute }: RetryProps) => {
     compute();
   };
 
-  if (isComputing) {
-    return (
-      <div className="retry-container">
-        <div className="retry-element">
-          <BsFillClockFill />
-        </div>
-      </div>
-    );
-  }
+  const retryButton = (
+    <button type="button" onClick={retry}>
+      <BsArrowRepeat />
+    </button>
+  );
+
+  const clockIcon = <BsFillClockFill />;
+
+  const retryElement = isComputing ? clockIcon : retryButton;
 
   return (
     <div className="retry-container">
-      <div className="retry-element">
-        <button type="button" onClick={retry}>
-          <BsArrowRepeat />
-        </button>
-      </div>
+      <div className="retry-element">{retryElement}</div>
     </div>
   );
 };
